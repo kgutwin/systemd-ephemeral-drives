@@ -8,13 +8,13 @@ The instructions are basically the same to get started.
 
 ## Dependencies
 
-    # apt install make parted lvm2
+    # apt install make parted lvm2 nvme-cli
 
 If you have multiple ephemeral disks, you can use software RAID to increase IO performance:
 
     # apt install mdadm
 
-## ephemeral-disk
+## ephemeral-disk
 
 This script prepares the ephemeral disks of an EC2 instance at each system boot by creating a swap partition (if enabled in configuration)
 and a data partition wich will be mounted in the directory */mnt/data*. If the partitions are already created, nothing is done except mounting them. After mounting, the service starts by dependency all required services.
@@ -38,7 +38,7 @@ The LVM volume group will have sufficient free space to allow snapshot creation 
 
     # make install
 
-### Usage
+### Usage
 
 Start the ephemeral disk services:
 

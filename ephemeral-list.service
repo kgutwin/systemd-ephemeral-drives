@@ -1,8 +1,8 @@
 [Unit]
 Description=Write ephemeral disk list
-Requires=networking.service mnt-data.mount ephemeral-units.service
+Requires=network.target mnt-data.mount ephemeral-units.service
 Before=mnt-data.mount ephemeral-disk.service ephemeral-units.service
-After=networking.service
+After=network.target
 ConditionPathIsMountPoint=!/mnt/data
 
 [Install]

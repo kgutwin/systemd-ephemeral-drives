@@ -13,7 +13,11 @@ oldIFS=${IFS}
 IFS=','
 for disk in ${DISKS}; do
     disks_list="${disks_list} ${disk}"
-    partitions_list="${partitions_list} ${disk}1"
+    if grep -q nvme <<<"${disk}"; then
+        partitions_list="${partitions_list} ${disk}p1"
+    else
+        partitions_list="${partitions_list} ${disk}1"
+    fi
     partitions_count=$((partitions_count + 1))
 done
 IFS=${oldIFS}

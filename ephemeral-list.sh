@@ -17,4 +17,9 @@ for disk in ${ephemerals}; do
   fi
 done
 
+# nvme devices
+for disk in $(nvme list | awk '/Amazon EC2 NVMe Instance Storage/{print $1}');  do
+  [[ "x${DRIVES}" == "x" ]] && DRIVES="${disk}" || DRIVES="${DRIVES},${disk}"
+done
+
 echo "DISKS=\"$DRIVES\"" > /etc/default/ephemeral-list
